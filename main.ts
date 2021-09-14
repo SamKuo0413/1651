@@ -11,14 +11,27 @@ keyboard.kbEvent(KeyValue.keydf, function () {
     I2C_LCD1602.clear()
     I2C_LCD1602.ShowString("Put In Your", 3, 0)
     I2C_LCD1602.ShowString("Homework", 4, 1)
+    for (let index = 0; index < 4; index++) {
+        if (距離1 > 距離2) {
+            距離1 = sonar.ping(
+            DigitalPin.P0,
+            DigitalPin.P1,
+            PingUnit.Centimeters
+            )
+            I2C_LCD1602.ShowString("Enter The Code", 1, 0)
+            I2C_LCD1602.ShowString("Code" + " " + 最後出現數, 3, 1)
+        }
+        basic.pause(200)
+    }
 })
 let 距離2 = 0
+let 距離1 = 0
 let 最後出現數 = 0
 I2C_LCD1602.LcdInit(39)
 I2C_LCD1602.clear()
 I2C_LCD1602.ShowString("Enter The Code", 1, 0)
 I2C_LCD1602.ShowString("Code" + " " + 最後出現數, 3, 1)
-let 距離1 = sonar.ping(
+距離1 = sonar.ping(
 DigitalPin.P0,
 DigitalPin.P1,
 PingUnit.Centimeters
@@ -96,13 +109,5 @@ basic.forever(function () {
     basic.pause(2000)
 })
 basic.forever(function () {
-    if (距離1 > 距離2) {
-        距離1 = sonar.ping(
-        DigitalPin.P0,
-        DigitalPin.P1,
-        PingUnit.Centimeters
-        )
-        I2C_LCD1602.ShowString("Enter The Code", 1, 0)
-        I2C_LCD1602.ShowString("Code" + " " + 最後出現數, 3, 1)
-    }
+	
 })
