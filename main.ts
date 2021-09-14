@@ -2,26 +2,31 @@ keyboard.kbEvent(KeyValue.keyminus, function () {
     keyboard.setIndexColor(11, 0xff0000)
     basic.pause(200)
     keyboard.ledBlank()
-    I2C_LCD1602.ShowString("Class" + "               ", 5, 1)
+    I2C_LCD1602.ShowString("Code" + "               ", 3, 1)
 })
 keyboard.kbEvent(KeyValue.keydf, function () {
     keyboard.setIndexColor(15, 0xff0000)
     basic.pause(200)
     keyboard.ledBlank()
     I2C_LCD1602.clear()
-    I2C_LCD1602.ShowString("Put In Your", 2, 0)
-    I2C_LCD1602.ShowString("Homework", 5, 1)
+    I2C_LCD1602.ShowString("Put In Your", 3, 0)
+    I2C_LCD1602.ShowString("Homework", 4, 1)
 })
-let 超音波距離 = 0
+let 距離2 = 0
 let 最後出現數 = 0
 I2C_LCD1602.LcdInit(39)
 I2C_LCD1602.clear()
-I2C_LCD1602.ShowString("Enter The Class", 0, 0)
-I2C_LCD1602.ShowString("Class" + " " + 最後出現數, 5, 1)
+I2C_LCD1602.ShowString("Enter The Code", 1, 0)
+I2C_LCD1602.ShowString("Code" + " " + 最後出現數, 3, 1)
+let 距離1 = sonar.ping(
+DigitalPin.P0,
+DigitalPin.P1,
+PingUnit.Centimeters
+)
 basic.forever(function () {
     if (keyboard.keyPressed(KeyValue.key0) || (keyboard.keyPressed(KeyValue.key1) || (keyboard.keyPressed(KeyValue.key2) || (keyboard.keyPressed(KeyValue.key3) || (keyboard.keyPressed(KeyValue.key4) || (keyboard.keyPressed(KeyValue.key5) || (keyboard.keyPressed(KeyValue.key6) || (keyboard.keyPressed(KeyValue.key7) || (keyboard.keyPressed(KeyValue.key8) || keyboard.keyPressed(KeyValue.key9)))))))))) {
         最後出現數 = keyboard.keyMathNumber()
-        I2C_LCD1602.ShowString("Class" + " " + 最後出現數, 5, 1)
+        I2C_LCD1602.ShowString("Code" + " " + 最後出現數, 3, 1)
     }
 })
 basic.forever(function () {
@@ -77,11 +82,27 @@ basic.forever(function () {
     }
 })
 basic.forever(function () {
-    超音波距離 = sonar.ping(
+    距離2 = sonar.ping(
     DigitalPin.P0,
     DigitalPin.P1,
     PingUnit.Centimeters
     )
-    I2C_LCD1602.ShowNumber(超音波距離, 0, 1)
     basic.pause(2000)
+})
+basic.forever(function () {
+    if (最後出現數 > 99999) {
+        I2C_LCD1602.ShowString("Code" + "               ", 3, 1)
+    }
+    basic.pause(2000)
+})
+basic.forever(function () {
+    if (距離1 > 距離2) {
+        距離1 = sonar.ping(
+        DigitalPin.P0,
+        DigitalPin.P1,
+        PingUnit.Centimeters
+        )
+        I2C_LCD1602.ShowString("Enter The Code", 1, 0)
+        I2C_LCD1602.ShowString("Code" + " " + 最後出現數, 3, 1)
+    }
 })
