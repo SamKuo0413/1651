@@ -13,13 +13,14 @@ keyboard.kbEvent(KeyValue.keydf, function () {
     I2C_LCD1602.ShowString("Homework", 4, 1)
     for (let index = 0; index < 4; index++) {
         if (距離1 > 距離2) {
+            I2C_LCD1602.clear()
             距離1 = sonar.ping(
             DigitalPin.P0,
             DigitalPin.P1,
             PingUnit.Centimeters
             )
             I2C_LCD1602.ShowString("Enter The Code", 1, 0)
-            I2C_LCD1602.ShowString("Code" + " " + 最後出現數, 3, 1)
+            I2C_LCD1602.ShowString("Code" + "               ", 3, 1)
         }
         basic.pause(200)
     }
