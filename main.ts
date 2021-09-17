@@ -25,8 +25,6 @@ basic.forever(function () {
         I2C_LCD1602.ShowString("Chinese", 4, 0)
         I2C_LCD1602.ShowString("Code" + " " + 最後出現數, 3, 1)
     }
-})
-basic.forever(function () {
     if (最後出現數 > 99999) {
         I2C_LCD1602.ShowString("Code" + "               ", 3, 1)
     }
@@ -83,4 +81,7 @@ basic.forever(function () {
         basic.pause(200)
         keyboard.ledBlank()
     }
+})
+basic.forever(function () {
+	
 })
