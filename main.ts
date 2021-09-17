@@ -27,6 +27,17 @@ basic.forever(function () {
     }
     basic.pause(1500)
     if (keyboard.keyPressed(KeyValue.key0)) {
+    	
+    }
+    if (keyboard.keyPressed(KeyValue.key0)) {
+    	
+    }
+    if (keyboard.keyPressed(KeyValue.key0)) {
+    	
+    }
+})
+basic.forever(function () {
+    if (keyboard.keyPressed(KeyValue.key0)) {
         keyboard.setIndexColor(0, 0xff0000)
         basic.pause(200)
         keyboard.ledBlank()
